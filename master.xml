@@ -1,0 +1,173 @@
+<domain type='kvm' id='4' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+  <name>master</name>
+  <uuid>bb4bd224-ba5c-475d-9799-bbaed42b8185</uuid>
+  <memory unit='KiB'>50331648</memory>
+  <currentMemory unit='KiB'>50331648</currentMemory>
+  <vcpu placement='static'>32</vcpu>
+  <cputune>
+    <vcpupin vcpu='0' cpuset='0'/>
+    <vcpupin vcpu='1' cpuset='128'/>
+    <vcpupin vcpu='2' cpuset='1'/>
+    <vcpupin vcpu='3' cpuset='129'/>
+    <vcpupin vcpu='4' cpuset='2'/>
+    <vcpupin vcpu='5' cpuset='130'/>
+    <vcpupin vcpu='6' cpuset='3'/>
+    <vcpupin vcpu='7' cpuset='131'/>
+    <vcpupin vcpu='8' cpuset='4'/>
+    <vcpupin vcpu='9' cpuset='132'/>
+    <vcpupin vcpu='10' cpuset='5'/>
+    <vcpupin vcpu='11' cpuset='133'/>
+    <vcpupin vcpu='12' cpuset='6'/>
+    <vcpupin vcpu='13' cpuset='134'/>
+    <vcpupin vcpu='14' cpuset='7'/>
+    <vcpupin vcpu='15' cpuset='135'/>
+    <vcpupin vcpu='16' cpuset='8'/>
+    <vcpupin vcpu='17' cpuset='136'/>
+    <vcpupin vcpu='18' cpuset='9'/>
+    <vcpupin vcpu='19' cpuset='137'/>
+    <vcpupin vcpu='20' cpuset='10'/>
+    <vcpupin vcpu='21' cpuset='138'/>
+    <vcpupin vcpu='22' cpuset='11'/>
+    <vcpupin vcpu='23' cpuset='139'/>
+    <vcpupin vcpu='24' cpuset='12'/>
+    <vcpupin vcpu='25' cpuset='140'/>
+    <vcpupin vcpu='26' cpuset='13'/>
+    <vcpupin vcpu='27' cpuset='141'/>
+    <vcpupin vcpu='28' cpuset='14'/>
+    <vcpupin vcpu='29' cpuset='142'/>
+    <vcpupin vcpu='30' cpuset='15'/>
+    <vcpupin vcpu='31' cpuset='143'/>
+  </cputune>
+  <numatune>
+    <memory mode='strict' nodeset='0'/>
+    <memnode cellid='0' mode='strict' nodeset='0'/>
+  </numatune>
+  <resource>
+    <partition>/machine</partition>
+  </resource>
+  <os>
+    <type arch='x86_64' machine='pc-q35-6.2'>hvm</type>
+    <boot dev='hd'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+  </features>
+  <cpu mode='host-passthrough' check='none' migratable='on'>
+    <topology sockets='1' dies='1' cores='16' threads='2'/>
+    <cache mode='passthrough'/>
+    <feature policy='require' name='topoext'/>
+    <numa>
+      <cell id='0' cpus='0-31' memory='50331648' unit='KiB'/>
+    </numa>
+  </cpu>
+  <clock offset='utc'>
+    <timer name='rtc' tickpolicy='catchup'/>
+    <timer name='pit' tickpolicy='delay'/>
+    <timer name='hpet' present='no'/>
+  </clock>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+  <pm>
+    <suspend-to-mem enabled='no'/>
+    <suspend-to-disk enabled='no'/>
+  </pm>
+  <devices>
+    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <controller type='usb' index='0' model='ich9-ehci1'>
+      <alias name='usb'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x1d' function='0x7'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci1'>
+      <alias name='usb'/>
+      <master startport='0'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x1d' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci2'>
+      <alias name='usb'/>
+      <master startport='2'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x1d' function='0x1'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci3'>
+      <alias name='usb'/>
+      <master startport='4'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x1d' function='0x2'/>
+    </controller>
+    <controller type='sata' index='0'>
+      <alias name='ide'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x1f' function='0x2'/>
+    </controller>
+    <controller type='pci' index='0' model='pcie-root'>
+      <alias name='pcie.0'/>
+    </controller>
+    <controller type='pci' index='1' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='1' port='0x8'/>
+      <alias name='pci.1'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='pci' index='2' model='pcie-to-pci-bridge'>
+      <model name='pcie-pci-bridge'/>
+      <alias name='pci.2'/>
+      <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
+    </controller>
+    <controller type='pci' index='3' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='3' port='0x9'/>
+      <alias name='pci.3'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
+    </controller>
+    <controller type='pci' index='4' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='4' port='0xa'/>
+      <alias name='pci.4'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x2'/>
+    </controller>
+    <interface type='bridge'>
+      <mac address='52:54:00:61:1a:da'/>
+      <source bridge='docker0'/>
+      <model type='rtl8139'/>
+      <alias name='net0'/>
+      <address type='pci' domain='0x0000' bus='0x02' slot='0x01' function='0x0'/>
+    </interface>
+    <serial type='pty'>
+      <source path='/dev/pts/4'/>
+      <target type='isa-serial' port='0'>
+        <model name='isa-serial'/>
+      </target>
+      <alias name='serial0'/>
+    </serial>
+    <console type='pty' tty='/dev/pts/4'>
+      <source path='/dev/pts/4'/>
+      <target type='serial' port='0'/>
+      <alias name='serial0'/>
+    </console>
+    <input type='mouse' bus='ps2'>
+      <alias name='input0'/>
+    </input>
+    <input type='keyboard' bus='ps2'>
+      <alias name='input1'/>
+    </input>
+    <audio id='1' type='none'/>
+    <memballoon model='virtio'>
+      <alias name='balloon0'/>
+      <address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
+    </memballoon>
+  </devices>
+  <seclabel type='dynamic' model='dac' relabel='yes'>
+    <label>+1013:+108</label>
+    <imagelabel>+1013:+108</imagelabel>
+  </seclabel>
+  <qemu:commandline>
+    <qemu:arg value='-device'/>
+    <qemu:arg value='pxb-pcie,id=pcie.1,bus=pcie.0,addr=0x6,numa_node=0,bus_nr=5'/>
+    <qemu:arg value='-device'/>
+    <qemu:arg value='pcie-pci-bridge,id=pcie-pci-br0,bus=pcie.1'/>
+    <qemu:arg value='-device'/>
+    <qemu:arg value='virtio-blk-pci,scsi=off,bus=pcie-pci-br0,addr=0x1,drive=hd1,id=virtio-disk0,bootindex=1'/>
+    <qemu:arg value='-drive'/>
+    <qemu:arg value='if=none,file=/home/wujianyong/vm/AnolisOS-8.9-x86_64-ANCK-master.qcow2,id=hd1'/>
+  </qemu:commandline>
+</domain>
+
